@@ -45,7 +45,7 @@ starbucks["milk"] = pd.Categorical(starbucks["milk"], categories = starbucks["mi
 starbucks["whip"] = starbucks["whip"].astype("bool")
 
 ########## Exploration variables qualitatives
-'''
+
 sns.countplot(x="milk",data=starbucks).set(title='Répartition du type de lait')
 plot.show()
 
@@ -115,7 +115,6 @@ sns.boxplot(
     data=starbucks
     ).set(title='Répartition des calories (KCal) si la boisson a été fouettée')
 plot.show()
-'''
 
 ########## Analyse en Composantes Principales
 
