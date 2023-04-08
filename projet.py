@@ -70,6 +70,12 @@ starbucks["product_name"].nunique() # 93 noms de boissons uniques
 
 ########## Exploration quantitative/qualitative
 
+##### Corrélations
+
+corr = starbucks.corr()
+sns.heatmap(corr, annot = True)
+plot.show()
+
 ##### Taille
 
 sns.boxplot(
