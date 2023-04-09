@@ -76,6 +76,26 @@ corr = starbucks.corr()
 sns.heatmap(corr, annot = True)
 plot.show()
 
+##### Focus sur des corrélations fortes
+
+sns.scatterplot(
+    x = "calories",
+    y = "sugar_g",
+    data = starbucks,
+    #hue = "size",
+    #size = "petal_length"
+    )
+plot.show()
+
+sns.scatterplot(
+    x = "total_carbs_g",
+    y = "sugar_g",
+    data = starbucks,
+    #hue = "size",
+    #size = "petal_length"
+    )
+plot.show() # les "carbs" sont en fait les glucides, d'où la linéarité
+
 ##### Taille
 
 sns.boxplot(
@@ -127,9 +147,10 @@ plot.show()
 ##### Générer le modèle
 
 n_comp = 5
+starbucks_acp = starbucks.drop(columns=["product_name", "milk", "size", "whip"])
 
 cls = PCA(n_components = n_comp)
-pcs = cls.fit_transform(starbucks.drop(columns=["product_name", "milk", "size", "whip"]))
+pcs = cls.fit_transform(starbucks_acp)
 
 ##### Étudier l'inertie des axes
 
@@ -172,13 +193,12 @@ for i in range(0, cls.components_.shape[1]):
 
     plot.text(cls.components_[0, i] + 0.05,
              cls.components_[1, i] + 0.05,
-             starbucks.drop(columns=["product_name", "milk", "size", "whip"]).columns.values[i])
+             starbucks_acp.columns.values[i])
 
 an = np.linspace(0, 2 * np.pi, 100)
 plot.plot(np.cos(an), np.sin(an))  # Add a unit circle for scale
 plot.axis('equal')
 ax.set_title('Variable factor map')
 plot.show()
-
 
 
