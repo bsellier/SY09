@@ -138,16 +138,28 @@ plot.show()
 
 ##### Placement des individus sur 2 axes
 
-plot.scatter(pcs[:, 0], pcs[:, 1])
+# On apprend dans le DF les composantes principales
+for i in range(0, n_comp):
+    starbucks['PC' + str(i + 1)] = pcs[:, i]
+print(starbucks.head())
+
+sns.scatterplot(x="PC1", y="PC2", data=starbucks)
+#add_labels(pcs[:, 0], pcs[:, 1], starbucks["product_name"])
+plot.show()
+
+sns.scatterplot(x="PC1", y="PC2", hue="size", data=starbucks)
+#add_labels(pcs[:, 0], pcs[:, 1], starbucks["product_name"])
+plot.show()
+
+sns.scatterplot(x="PC1", y="PC2", hue="whip", data=starbucks)
+#add_labels(pcs[:, 0], pcs[:, 1], starbucks["product_name"])
+plot.show()
+
+sns.scatterplot(x="PC1", y="PC2", hue="milk", data=starbucks)
 #add_labels(pcs[:, 0], pcs[:, 1], starbucks["product_name"])
 plot.show()
 
 ##### Cercle des corrélations
-
-# On apprend dans le DF les composantes principales
-#for i in range(0, n_comp):
-#    starbucks['PC' + str(i + 1)] = pcs[:, i]
-#print(starbucks.head())
 
 (fig, ax) = plot.subplots(figsize=(8, 8))
 for i in range(0, cls.components_.shape[1]):
