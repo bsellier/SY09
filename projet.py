@@ -147,7 +147,9 @@ plot.show()
 ##### Générer le modèle
 
 n_comp = 5
-starbucks_acp = starbucks.drop(columns=["product_name", "milk", "size", "whip"])
+starbucks_acp = starbucks
+#starbucks_acp = starbucks_acp[starbucks_acp["size"] == "tall"]
+starbucks_acp = starbucks_acp.drop(columns=["product_name", "milk", "size", "whip"])
 
 cls = PCA(n_components = n_comp)
 pcs = cls.fit_transform(starbucks_acp)
